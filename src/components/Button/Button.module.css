@@ -1,0 +1,52 @@
+
+.limit {
+    color: red;
+}
+
+.button {
+/*    background-color: yellowgreen;
+    border-radius: 5px;
+    border: black;
+    margin: 30px 10px 10px 10px;
+    width: 80px;
+    height: 40px;
+    padding: 5px;
+    font-size: 20px;
+    border: solid 2px blue;
+    color: white;
+    font-family: BATAVIA ;*/
+
+    box-shadow: 3px 4px 0px 0px #1564ad;
+    background:linear-gradient(to bottom, green 5%, yellowgreen 100%);
+    background-color:green;
+    border-radius:5px;
+    border:1px solid #337bc4;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:BATAVIA;
+    font-size:17px;
+    font-weight:bold;
+    padding:5px 10px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #528ecc;
+    margin: 30px 30px 30px 30px;
+
+}
+
+.button:hover {
+    background: linear-gradient(to bottom, yellowgreen 5%, green 100%);
+    background-color: green;
+}
+
+.button:active {
+    position:relative;
+    top:2px;
+}
+
+.button:disabled {
+    border: 1px solid #999999;
+    background: #cccccc;;
+    color: #666666;
+
+}

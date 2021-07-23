@@ -1,24 +1,23 @@
-.App {
-  padding: 30px;
-  display: flex;
+.counter {
+    text-align: center;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: solid 2px blue;
+   background-color: cornflowerblue;
+    padding: 30px;
+    border-radius: 20px;
 }
 
-.App > div {
-  margin-right: 50px;
-}
 
-.error {
-  border: red 1px solid;
-}
-
-.error-message {
-  color: red;
-}
-
-.active-filter {
-  background-color: aquamarine;
-}
-
-.is-done {
-  opacity: 0.5;
+.display {
+    text-align: center;
+    font-size: 50px;
+    padding: 50px;
+    height: 90px;
+    background-color: powderblue;
+    color: blue;
+    border: 2px solid blue;
+    border-radius: 20px;
+    font-family: BATAVIA ;
 }
