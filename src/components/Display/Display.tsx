@@ -10,8 +10,8 @@ type DisplayType = {
 
 export const Display = (props: DisplayType) => {
     return (
-            <div className={props.number === upperNumberLimit ? s.limit : ''}>
-                {props.number}
-            </div>
+        <div className={props.number === upperNumberLimit ? s.limit : ''}>
+            {props.number}
+        </div>
     )
 }

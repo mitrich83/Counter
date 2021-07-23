@@ -27,18 +27,31 @@ const App = () => {
 
     return (
         <div className={'counter'}>
-            <div className={'display'}>
-                <Display number={number}/>
+            <div className={'showNumbers'}>
+                <div className={'display'}>
+                    <Display number={number}/>
+                </div>
+                <div>
+                    <Button title={'Inc'}
+                            callback={incNumber}
+                            number={number}
+                            disable={number === upperNumberLimit}/>
+                    <Button title={'Reset'}
+                            callback={resetNumber}
+                            number={number}
+                            disable={number === lowNumberLimit}/>
+                </div>
             </div>
-            <div>
-                <Button title={'Inc'}
-                        callback={incNumber}
-                        number={number}
-                        disable={number === upperNumberLimit}/>
-                <Button title={'Reset'}
-                        callback={resetNumber}
-                        number={number}
-                        disable={number === lowNumberLimit}/>
+            <div className={'showSettings'}>
+                <div className={'display'}>
+                    <Display number={number}/>
+                </div>
+                <div>
+                    <Button title={'Set'}
+                            callback={incNumber}
+                            number={number}
+                            disable={number === upperNumberLimit}/>
+                </div>
             </div>
         </div>
     )

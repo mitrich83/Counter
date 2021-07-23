@@ -4,17 +4,17 @@
 }
 
 .button {
-/*    background-color: yellowgreen;
-    border-radius: 5px;
-    border: black;
-    margin: 30px 10px 10px 10px;
-    width: 80px;
-    height: 40px;
-    padding: 5px;
-    font-size: 20px;
-    border: solid 2px blue;
-    color: white;
-    font-family: BATAVIA ;*/
+    /*    background-color: yellowgreen;
+        border-radius: 5px;
+        border: black;
+        margin: 30px 10px 10px 10px;
+        width: 80px;
+        height: 40px;
+        padding: 5px;
+        font-size: 20px;
+        border: solid 2px blue;
+        color: white;
+        font-family: BATAVIA ;*/
 
     box-shadow: 3px 4px 0px 0px #1564ad;
     background:linear-gradient(to bottom, green 5%, yellowgreen 100%);
