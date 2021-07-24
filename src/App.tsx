@@ -15,6 +15,8 @@ const App = () => {
 
     const [value, setValue] = useState<number | string>(0)
 
+   // const [error, setError] =useState<string>('')
+
     const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
 
@@ -38,17 +40,15 @@ const App = () => {
     }
 
     useEffect(() => {
-        // @ts-ignore
-        const minValue = JSON.parse(localStorage.getItem('minValue'));
-        // @ts-ignore
-        const maxValue = JSON.parse(localStorage.getItem('maxValue'));
+        const minValue = localStorage.getItem('minValue');
+
+        const maxValue = localStorage.getItem('maxValue');
 
         if (minValue && maxValue) {
             setMinValue(+minValue)
             setMaxValue(+maxValue)
-        } //else return null
+        }
     }, [])
-
 
     useEffect(() => {
         if (maxValue < minValue ||
@@ -74,6 +74,7 @@ const App = () => {
                 <div className={'display'}>
                     <Display value={value}
                              maxValue={maxValue}
+                            // error={error}
                     />
                 </div>
                 <div>
