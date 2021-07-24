@@ -4,15 +4,16 @@ import s from './Button.module.css'
 type ButtonType = {
     title: string
     callback: () => void
-    number: number
-    disable: boolean
+    value: number | string
+    isDisabled: boolean
 }
 
 export const Button = (props: ButtonType) => {
     return (
-            <button className={s.button} onClick={() => props.callback()}
-                    disabled={props.disable}
-                   >{props.title}
-            </button>
+        <button
+            className={s.button} onClick={() => props.callback()}
+            disabled={props.isDisabled}
+        >{props.title}
+        </button>
     )
 }

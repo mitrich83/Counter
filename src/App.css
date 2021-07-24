@@ -27,7 +27,7 @@
 
 .display {
     text-align: center;
-    font-size: 50px;
+    font-size: 30px;
     padding: 50px;
     height: 90px;
     background-color: powderblue;
@@ -35,4 +35,16 @@
     border: 2px solid blue;
     border-radius: 20px;
     font-family: BATAVIA;
+}
+
+.setting {
+    text-align: center;
+
+
+    height: 190px;
+    background-color: powderblue;
+    color: blue;
+    border: 2px solid blue;
+    border-radius: 20px;
+
 }
