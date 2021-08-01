@@ -1,50 +1,62 @@
 .counter {
-
-}
-
-.showNumbers {
-    float: right;
+    display: flex;
+    justify-content: center;
     width: 300px;
-    height: 300px;
-    margin: 20px auto;
     border: solid 2px blue;
     background-color: cornflowerblue;
     padding: 30px;
     border-radius: 20px;
+}
+
+.showDisplay {
+    border: 3px solid red;
+}
+
+.display {
+    display: flex;
+    height: 190px;
+    width: 300px;
+    background-color: powderblue;
+    border: 3px solid blue;
+    border-radius: 20px;
+    font-family: BATAVIA;
+    font-size: 30px;
+    color: blue;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.buttonsDisplay {
+    display:flex;
+    justify-content: space-around;
+    margin-top: 25px;
+    border: 3px solid lime;
 }
 
 .showSettings {
-    float: left;
-    width: 300px;
-    height: 300px;
-    margin: 20px auto;
-    border: solid 2px blue;
-    background-color: cornflowerblue;
-    padding: 30px;
-    border-radius: 20px;
-}
 
-
-.display {
-    text-align: center;
-    font-size: 30px;
-    padding: 50px;
-    height: 90px;
-    background-color: powderblue;
-    color: blue;
-    border: 2px solid blue;
-    border-radius: 20px;
-    font-family: BATAVIA;
 }
 
 .setting {
-    text-align: center;
-
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 190px;
+    width: 300px;
     background-color: powderblue;
     color: blue;
     border: 2px solid blue;
     border-radius: 20px;
+    font-size: 10px;
+    font-family: BATAVIA;
 
 }
+
+.buttonSetting {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    border: 3px solid lime;
+}
+
