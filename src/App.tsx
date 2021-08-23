@@ -3,50 +3,60 @@ import './App.css'
 import {Display} from './components/Display/Display';
 import {Button} from './components/Button/Button';
 import {Setting} from './components/Setting/Setting';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppStateType} from './BLL/store';
+import {
+    ActionType,
+    disableButtonAC,
+    incValueAC,
+    MaxValueAC,
+    MinValueAC,
+    resetValueAC,
+    setValueAC
+} from './BLL/counter-reducer';
+import {Dispatch} from 'redux';
 
-export type NumbersType = {
-    number: number
+export type ReturnStateType = {
+    value: number | string
+    isDisabled: boolean
 }
 
+
+// const qwe = (state: any): ReturnStateType => state.counter;
+
 const App = () => {
-    const [maxValue, setMaxValue] = useState<number>(0)
+     const minValue = Number(localStorage.getItem('minValue'));
+     const maxValue = Number(localStorage.getItem('maxValue'));
 
-    const [minValue, setMinValue] = useState<number>(0)
-
-    const [value, setValue] = useState<number | string>(0)
-
-   // const [error, setError] =useState<string>('')
-
-    const [isDisabled, setIsDisabled] = useState<boolean>(false)
-
+    const value = useSelector<AppStateType, number|string>(state => state.counter.value)
+    const isDisabled = useSelector<AppStateType, boolean>(state => state.counter.isDisabled)
+    const dispatch = useDispatch<Dispatch<ActionType>>()
 
     const incNumber = () => {
         if (value > maxValue) return;
-        else (setValue(+value + 1))
+        else dispatch(incValueAC(+value + 1))
+    }
+    const resetNumber = () => {
+        dispatch(resetValueAC(minValue))
     }
 
-    const resetNumber = () => { setValue(minValue)}
 
     const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
         localStorage.setItem(
             'maxValue', JSON.stringify(e.currentTarget.value))
-        setMaxValue(+e.currentTarget.value)
+        dispatch(MaxValueAC(+e.currentTarget.value))
     }
 
     const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
         localStorage.setItem(
             'minValue', JSON.stringify(e.currentTarget.value))
-        setMinValue(+e.currentTarget.value)
+        dispatch(MinValueAC(+e.currentTarget.value))
     }
 
     useEffect(() => {
-        const minValue = localStorage.getItem('minValue');
-
-        const maxValue = localStorage.getItem('maxValue');
-
         if (minValue && maxValue) {
-            setMinValue(+minValue)
-            setMaxValue(+maxValue)
+            dispatch(MinValueAC(minValue))
+            dispatch(MaxValueAC(maxValue))
         }
     }, [])
 
@@ -55,17 +65,17 @@ const App = () => {
             minValue < 0 ||
             maxValue === minValue
         ) {
-            setValue('Incorrect value!')
-            setIsDisabled(true)
+            dispatch(setValueAC('Incorrect value!'))
+            dispatch(disableButtonAC(true))
             return;
         }
-        setValue(minValue)
-        setIsDisabled(false)
+        dispatch(setValueAC(minValue))
+        dispatch(disableButtonAC(false))
     }, [minValue, maxValue])
 
     const setButtonNumber = () => {
-        setValue(minValue)
-        setIsDisabled(true)
+        dispatch(setValueAC(minValue))
+        dispatch(disableButtonAC(true))
     }
 
     return (
@@ -74,7 +84,6 @@ const App = () => {
                 <div className={'display'}>
                     <Display value={value}
                              maxValue={maxValue}
-                            // error={error}
                     />
                 </div>
                 <div>

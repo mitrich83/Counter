@@ -5,7 +5,7 @@ type ButtonType = {
     title: string
     callback: () => void
     value: number | string
-    isDisabled: boolean
+    isDisabled?: boolean
 }
 
 export const Button = (props: ButtonType) => {
