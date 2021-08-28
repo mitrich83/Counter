@@ -1,15 +1,17 @@
-
-import { ReturnStateType} from '../App';
+import {ReturnStateType} from '../App';
+import {AppStateType} from './store';
 
 
 const InitialState = {
-    value: 0 || '' ,
+    value: 0 as number | string,
+    minValue: 0,
+    maxValue: 0,
     isDisabled: false
 }
 
 type InitialStateType = typeof InitialState
 
-export const counterReducer = (state = InitialState, action: ActionType): ReturnStateType => {
+export const counterReducer = (state: InitialStateType = InitialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case 'INC-VALUE':
             return {
@@ -22,12 +24,12 @@ export const counterReducer = (state = InitialState, action: ActionType): Return
         }
         case 'SET-MAX-VALUE': {
             return {
-                ...state, value: action.maxValue
+                ...state, maxValue: action.maxValue
             }
         }
         case 'SET-MIN-VALUE': {
             return {
-                ...state, value: action.minValue
+                ...state, minValue: action.minValue
             }
         }
         case 'SET-DISABLE': {
@@ -35,7 +37,7 @@ export const counterReducer = (state = InitialState, action: ActionType): Return
                 ...state, isDisabled: action.isDisabled
             }
         }
-        case 'SET-VALUE':{
+        case 'SET-VALUE': {
             return {
                 ...state, value: action.value
             }
@@ -46,20 +48,19 @@ export const counterReducer = (state = InitialState, action: ActionType): Return
 
 }
 
-
-export const incValueAC = (value:number) => ({type: 'INC-VALUE', value} as const)
-export const setValueAC = (value:number|string) => ({type: 'SET-VALUE', value} as const)
+export const incValueAC = (value: number) => ({type: 'INC-VALUE', value} as const)
 export const resetValueAC = (minValue: number) => ({type: 'RESET-VALUE', minValue} as const)
 export const MaxValueAC = (maxValue: number) => ({type: 'SET-MAX-VALUE', maxValue} as const)
 export const MinValueAC = (minValue: number) => ({type: 'SET-MIN-VALUE', minValue} as const)
 export const disableButtonAC = (isDisabled: boolean) => ({type: 'SET-DISABLE', isDisabled} as const)
+export const setValueAC = (value: number | string) => ({type: 'SET-VALUE', value} as const)
 
 export type IncValueActionType = ReturnType<typeof incValueAC>
-export type SetValueActionType = ReturnType<typeof setValueAC>
 export type ResetValueActionType = ReturnType<typeof resetValueAC>
 export type MaxValueActionType = ReturnType<typeof MaxValueAC>
 export type MinValueActionType = ReturnType<typeof MinValueAC>
 export type DisableButtonActionType = ReturnType<typeof disableButtonAC>
+export type SetValueActionType = ReturnType<typeof setValueAC>
 
 export type ActionType =
     IncValueActionType
@@ -69,20 +70,3 @@ export type ActionType =
     | DisableButtonActionType
     | SetValueActionType
 
-
-
-
-
-
-
-
-
-
-
-
-// Thunk
-/*
-export const IncValueTC = (value: number) => (dispatch: Dispatch) => {
-    localStorage.setItem('maxValue', JSON.stringify(value))
-    dispatch(incValueAC())
-}*/

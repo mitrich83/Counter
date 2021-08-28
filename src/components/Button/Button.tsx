@@ -4,7 +4,6 @@ import s from './Button.module.css'
 type ButtonType = {
     title: string
     callback: () => void
-    value: number | string
     isDisabled?: boolean
 }
 
