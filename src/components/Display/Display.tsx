@@ -3,7 +3,7 @@ import s from './Display.module.css'
 
 type DisplayType = {
     value: number | string
-    maxValue?: number
+    maxValue: number
 }
 
 export const Display = (props: DisplayType) => {
