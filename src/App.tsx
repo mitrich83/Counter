@@ -79,13 +79,13 @@ const App = () => {
 
     return (
         <div className={s.counter}>
-            <div className={s.showNumbers}>
+            <div className={s.showDisplay}>
                 <div className={s.display}>
                     <Display value={value}
                              maxValue={maxValue}
                     />
                 </div>
-                <div>
+                <div className={s.buttons}>
                     <Button title={'Inc'}
                             callback={incNumber}
                             isDisabled={value === maxValue}
@@ -104,7 +104,7 @@ const App = () => {
                              onChangeMinHandler={onChangeMinHandler}
                     />
                 </div>
-                <div>
+                <div className={s.buttons}>
                     <Button
                         title={'Set'}
                         callback={setButtonNumber}

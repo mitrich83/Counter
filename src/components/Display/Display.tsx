@@ -9,8 +9,10 @@ type DisplayType = {
 export const Display = (props: DisplayType) => {
 
     return (
-        <div className={props.value === props.maxValue ? s.limit : ''}>
-            {props.value}
+        <div className={s.window}>
+            <div className={props.value === props.maxValue ? s.limit : ''}>
+                {props.value}
+            </div>
         </div>
     )
 }

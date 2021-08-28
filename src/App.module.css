@@ -1,40 +1,38 @@
 .counter {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+}
+
+.showSettings {
     width: 300px;
+    height: 300px;
     border: solid 2px blue;
     background-color: cornflowerblue;
-    padding: 30px;
     border-radius: 20px;
 }
 
 .showDisplay {
-    border: 3px solid red;
+    width: 300px;
+    height: 300px;
+    border: solid 2px blue;
+    background-color: cornflowerblue;
+    border-radius: 20px;
 }
 
 .display {
-    display: flex;
-    height: 190px;
-    width: 300px;
-    background-color: powderblue;
-    border: 3px solid blue;
-    border-radius: 20px;
-    font-family: BATAVIA;
-    font-size: 30px;
-    color: blue;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-
-}
-
-.buttonsDisplay {
-    display:flex;
-    justify-content: space-around;
-    margin-top: 25px;
-    border: 3px solid lime;
-}
-
-.showSettings {
+    height: 70%;
+    width: 90%;
+    margin: 5%;
+    font-size: 40px;
+    text-align: center;
+    background-color: powderblue;
+    color: blue;
+    border: 2px solid blue;
+    border-radius: 20px;
+    font-family: BATAVIA;
 
 }
 
@@ -42,21 +40,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 190px;
-    width: 300px;
+    height: 70%;
+    margin: 5%;
     background-color: powderblue;
     color: blue;
     border: 2px solid blue;
     border-radius: 20px;
-    font-size: 10px;
-    font-family: BATAVIA;
 
 }
 
-.buttonSetting {
+.buttons {
     display: flex;
-    justify-content: center;
-    margin-top: 25px;
-    border: 3px solid lime;
+    justify-content: space-around;
+    align-items: center;
 }
-

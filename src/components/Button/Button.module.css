@@ -9,7 +9,6 @@
     background-color:green;
     border-radius:5px;
     border:1px solid #337bc4;
-    display:inline-block;
     cursor:pointer;
     color:#ffffff;
     font-family:BATAVIA;
@@ -27,7 +26,7 @@
 }
 
 .button:active {
-    position:relative;
+
     top:2px;
 }
 
