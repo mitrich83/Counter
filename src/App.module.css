@@ -1,9 +1,9 @@
 .counter {
-
+display: flex;
 }
 
 .showNumbers {
-    float: right;
+    justify-content: space-around;
     width: 300px;
     height: 300px;
     margin: 20px auto;
@@ -14,11 +14,11 @@
 }
 
 .showSettings {
-    float: left;
+   justify-content: space-around;
     width: 300px;
     height: 300px;
     margin: 20px auto;
-    border: solid 2px blue;
+    border: solid 2px red;
     background-color: cornflowerblue;
     padding: 30px;
     border-radius: 20px;
@@ -39,12 +39,10 @@
 
 .setting {
     text-align: center;
-
-
     height: 190px;
     background-color: powderblue;
     color: blue;
-    border: 2px solid blue;
+    border: 2px solid green;
     border-radius: 20px;
 
 }

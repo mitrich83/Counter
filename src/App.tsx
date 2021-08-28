@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import './App.css'
+import s from './App.module.css'
 import {Display} from './components/Display/Display';
 import {Button} from './components/Button/Button';
 import {Setting} from './components/Setting/Setting';
@@ -27,8 +27,8 @@ const App = () => {
     const value = useSelector<AppStateType, number | string>(state => state.counter.value)
     const minValue = useSelector<AppStateType, number>(state => state.counter.minValue)
     const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-
     const isDisabled = useSelector<AppStateType, boolean>(state => state.counter.isDisabled)
+
     const dispatch = useDispatch<Dispatch<ActionType>>()
 
 
@@ -78,9 +78,9 @@ const App = () => {
     }
 
     return (
-        <div className={'counter'}>
-            <div className={'showNumbers'}>
-                <div className={'display'}>
+        <div className={s.counter}>
+            <div className={s.showNumbers}>
+                <div className={s.display}>
                     <Display value={value}
                              maxValue={maxValue}
                     />
@@ -96,8 +96,8 @@ const App = () => {
                     />
                 </div>
             </div>
-            <div className={'showSettings'}>
-                <div className={'setting'}>
+            <div className={s.showSettings}>
+                <div className={s.setting}>
                     <Setting maxValue={maxValue}
                              minValue={minValue}
                              onChangeMaxHandler={onChangeMaxHandler}
