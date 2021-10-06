@@ -1,56 +1,75 @@
-.counter {
+.root {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
 }
 
-.showSettings {
-    width: 300px;
-    height: 300px;
-    border: solid 2px blue;
-    background-color: cornflowerblue;
-    border-radius: 20px;
+.root.light {
+    background: #eaf2f1;
+    color: #001f3f;
+    --mainBackground: #e0e0e0;
+    --buttonBackground: #eaf2f1;
+    --boxShadow: 20px 20px 60px #bebebe,
+    -20px -20px 60px #ffffff;;
 }
 
-.showDisplay {
-    width: 300px;
-    height: 300px;
-    border: solid 2px blue;
-    background-color: cornflowerblue;
-    border-radius: 20px;
+.root.dark {
+    background: #32354e;
+    color: whitesmoke;
+    --mainBackground: #3e4274;
+    --buttonBackground: #9399ec;
+    --boxShadow: -20px -20px 20px #474c85;
+}
+
+.main {
+
+    font-family: 'Courier New', Courier, monospace;
+
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    background: var(--mainBackground);
+    box-shadow: var(--boxShadow)
+
+
+}
+
+.container {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    align-items: center;
+    flex-direction: column;
 }
 
 .display {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
-    width: 90%;
-    margin: 5%;
-    font-size: 40px;
-    text-align: center;
-    background-color: powderblue;
-    color: blue;
-    border: 2px solid blue;
+    display: flex;
+    width: 200px;
+    height: 200px;
     border-radius: 20px;
-    font-family: BATAVIA;
-
+    align-items: center;
+    justify-content: center;
 }
 
-.setting {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 70%;
-    margin: 5%;
-    background-color: powderblue;
-    color: blue;
-    border: 2px solid blue;
-    border-radius: 20px;
-
+.displayError {
+    color: red;
 }
 
-.buttons {
+
+.settings {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    width: 400px;
+    height: 400px;
     align-items: center;
+    justify-content: center;
+}
+
+.toggleMode {
+    display: flex;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 10px;
 }

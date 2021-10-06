@@ -1,118 +1,79 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
-import s from './App.module.css'
-import {Display} from './components/Display/Display';
-import {Button} from './components/Button/Button';
-import {Setting} from './components/Setting/Setting';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from './BLL/store';
+import React, {ChangeEvent, useCallback, useState} from 'react';
+import s from './App.module.css';
+import {ButtonMemo} from "./components/Button";
+import {DisplayCounter} from "./components/Display";
+import {Settings} from "./components/Settings";
+import {useDispatch, useSelector} from "react-redux";
 import {
-    ActionType,
-    disableButtonAC,
-    incValueAC,
-    MaxValueAC,
-    MinValueAC,
-    resetValueAC,
-    setValueAC
-} from './BLL/counter-reducer';
-import {Dispatch} from 'redux';
-
-export type ReturnStateType = {
-    value: number | string,
-    minValue: number,
-    maxValue: number,
-    isDisabled: boolean
-}
-
-const App = () => {
-    const value = useSelector<AppStateType, number | string>(state => state.counter.value)
-    const minValue = useSelector<AppStateType, number>(state => state.counter.minValue)
-    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    const isDisabled = useSelector<AppStateType, boolean>(state => state.counter.isDisabled)
-
-    const dispatch = useDispatch<Dispatch<ActionType>>()
+    changeDisplayModeAc,
+    changeMaxValueAc,
+    changeMinValueAc,
+    incrementCounterValueAc,
+    resetStateAc,
+    setConfigAc
+} from "./Redux/Reducers/Main-Reducer";
+import {selectCounterValue, selectDisplayMode, selectMaxValue, selectMinValue} from "./selectors";
+import {ToggleMode} from "./components/Toggle";
 
 
-    const incNumber = () => {
-        if (value >= maxValue) return;
-        else dispatch(incValueAC(+value))
-    }
-    const resetNumber = () => {
-        dispatch(resetValueAC(+minValue))
-    }
+function App() {
 
-    const onChangeMinHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        localStorage.setItem('minValue', (e.currentTarget.value))
-        dispatch(MinValueAC(+e.currentTarget.value))
-    }
-    const onChangeMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        localStorage.setItem('maxValue', (e.currentTarget.value))
-        dispatch(MaxValueAC(+e.currentTarget.value))
-    }
+    const dispatch = useDispatch()
 
-    useEffect(() => {
-        const minValue = localStorage.getItem('minValue')
+    const displayMode = useSelector(selectDisplayMode)
+    const counterValue = useSelector(selectCounterValue)
+    const maxValue = useSelector(selectMaxValue)
+    const minValue = useSelector(selectMinValue)
+    const incButton = useCallback(() => dispatch(incrementCounterValueAc()), [dispatch])
+    const resetState = useCallback(() => dispatch(resetStateAc()), [dispatch])
+    const changeDisplayMode = useCallback(() => dispatch(changeDisplayModeAc(false)), [dispatch])
+    const setConfig = useCallback(() => dispatch(setConfigAc(true)), [dispatch])
+    const onChaneMaxValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(changeMaxValueAc(Number(e.currentTarget.value)))
+    const onChaneMinValue = (e: ChangeEvent<HTMLInputElement>) => dispatch(changeMinValueAc(Number(e.currentTarget.value)))
+    const [isDark, setIsDark] = useState(JSON.parse(localStorage.getItem("isDark")!))  // take value from lS
+    const changeTheme = useCallback(() => {
+        setIsDark(!isDark)
+        localStorage.setItem("isDark", JSON.stringify(!isDark))
+    }, [isDark])
 
-        const maxValue = localStorage.getItem('maxValue');
-
-        if (minValue && maxValue) {
-            dispatch(MinValueAC(+minValue))
-            dispatch(MaxValueAC(+maxValue))
-        }
-    }, [])
-
-    useEffect(() => {
-        if (maxValue <= minValue ||
-            minValue < 0
-        ) {
-            dispatch(setValueAC('Incorrect value!'))
-            dispatch(disableButtonAC(true))
-            return;
-        } else
-            dispatch(setValueAC(minValue))
-            dispatch(disableButtonAC(false))
-    }, [minValue, maxValue])
-
-    const setButtonNumber = () => {
-        dispatch(setValueAC(minValue))
-        dispatch(disableButtonAC(true))
-    }
+    const error = maxValue <= minValue || maxValue <= 0 || minValue < 0
+    const buttonDisableInc = counterValue === maxValue
 
     return (
-        <div className={s.counter}>
-            <div className={s.showDisplay}>
-                <div className={s.display}>
-                    <Display value={value}
-                             maxValue={maxValue}
-                    />
-                </div>
-                <div className={s.buttons}>
-                    <Button title={'Inc'}
-                            callback={incNumber}
-                            isDisabled={value === maxValue}
-                    />
-                    <Button title={'Reset'}
-                            callback={resetNumber}
-                            isDisabled={value === minValue}
-                    />
-                </div>
-            </div>
-            <div className={s.showSettings}>
-                <div className={s.setting}>
-                    <Setting maxValue={maxValue}
-                             minValue={minValue}
-                             onChangeMaxHandler={onChangeMaxHandler}
-                             onChangeMinHandler={onChangeMinHandler}
-                    />
-                </div>
-                <div className={s.buttons}>
-                    <Button
-                        title={'Set'}
-                        callback={setButtonNumber}
-                        isDisabled={isDisabled}
-                    />
-                </div>
+        <div className={`${s.root} ${isDark ? s.dark : s.light}`}>
+            <div className={s.main}>
+
+                {displayMode
+                    ? <div className={s.container}>
+                        <div className={s.toggleMode}>
+                            <ToggleMode onClick={changeTheme} isDark={isDark}/>
+                        </div>
+                        <div>
+                            <DisplayCounter counterValue={counterValue} isError={buttonDisableInc}/>
+                        </div>
+                        <div>
+                            <ButtonMemo onClick={incButton} title={"inc"} buttonDisable={buttonDisableInc}/>
+
+                            <ButtonMemo onClick={resetState} title={"reset"}/>
+
+                            <ButtonMemo onClick={changeDisplayMode} title={"set"}/>
+                        </div>
+
+                    </div>
+                    : <div className={s.settings}>
+                        <Settings minValue={minValue} maxValue={maxValue} onChangeMax={onChaneMaxValue}
+                                  onChangeMin={onChaneMinValue} isError={error}/>
+                        <div>
+                            <ButtonMemo title={"set"} onClick={setConfig} buttonDisable={error}/>
+                        </div>
+                    </div>
+
+                }
+
+
             </div>
         </div>
-    )
+    );
 }
+
 export default App;
